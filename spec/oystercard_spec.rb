@@ -16,9 +16,9 @@ describe Oystercard do
     expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
     end
 
-    it "has empty journey history" do
-      expect(oystercard.journey_history).to eq []
-    end
+    # it "has empty journey history" do
+    #   expect(oystercard.journey_history).to eq []
+    # end
   end
 
   context "when oystercard meets minimum balance" do
@@ -43,11 +43,11 @@ describe Oystercard do
         expect(oystercard.entry_station).to eq nil
       end
 
-      let(:journey) { {entry_station: station, exit_station: station }}
-      it "stores current journey hash in array" do
-        oystercard.touch_out(station)
-        expect(oystercard.journey_history).to include(journey)
-      end
+      # let(:journey) { {entry_station: station, exit_station: station }}
+      # it "stores current journey hash in array" do
+      #   oystercard.touch_out(station)
+      #   expect(oystercard.journey_history).to include(journey)
+      # end
     end
   end
 
@@ -72,11 +72,11 @@ describe Oystercard do
     end
   end
 
-  describe "#in_journey" do
-    it "returns whether or not the card is in journey" do
-      expect(oystercard.in_journey?).to eq(true).or eq(false)
-    end
-  end
+  # describe "#in_journey" do
+  #   it "returns whether or not the card is in journey" do
+  #     expect(oystercard.in_journey?).to eq(true).or eq(false)
+  #   end
+  # end
 
     describe "#touch_out" do
     it "raises error if card hasn't been touched in" do
