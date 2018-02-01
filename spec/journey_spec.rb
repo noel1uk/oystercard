@@ -2,7 +2,7 @@ require "journey"
 
 describe Journey do
 
-  subject(:journey) {described_class.new(entry_station,exit_station)}
+  subject(:journey) {described_class.new(entry_station)}
   let(:entry_station){double("entry station")}
   let(:exit_station){double("exit_station")}
 
@@ -12,15 +12,15 @@ describe Journey do
       it "returns entry station " do
         expect(journey.entry_station).to eq entry_station
       end
-      it "returns exit station" do
-        expect(journey.exit_station).to eq exit_station
-      end
+      # it "returns exit station" do
+      #   expect(journey.exit_station).to eq exit_station
+      # end
     end
   end
   context "when the journey is complete" do
     describe "#send_journey" do
       it "responds to send journey" do
-        expect(journey.send_journey).to eq ({:entry_station => entry_station, :exit_station => exit_station})
+        expect(journey.save).to eq ({:entry_station => entry_station, :exit_station => exit_station})
       end
     end
   end

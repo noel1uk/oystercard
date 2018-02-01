@@ -11,21 +11,26 @@ describe Oystercard do
     end
   end
 
-  context "when new oystercard is initialized without argument" do
-    it "has default balance" do
-      expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
+  describe "#initialize" do
+    context "when new oystercard is initialized without argument" do
+      it "has default balance" do
+        expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
+      end
+      # it "has empty journey history" do
+      #   expect(oystercard.journey_history).to eq []
+      # end
     end
-
-    # it "has empty journey history" do
-    #   expect(oystercard.journey_history).to eq []
-    # end
-  end
-  context "When a journey is sent into the history" do
-    it "save journey into history" do
-      expect(oystercard.history).to eq []
+    context "When a journey is sent into the history" do
+      it "save journey into history" do
+        expect(oystercard.history).to eq []
+      end
+    end
+    context "when initialized" do
+      it "equals nil" do
+        expect(oystercard.current_journey).to eq nil
+      end
     end
   end
-
   context "when oystercard meets minimum balance" do
     before(:each){oystercard.top_up(Oystercard::MINIMUM_BALANCE)}
 
@@ -35,6 +40,7 @@ describe Oystercard do
         expect(oystercard.entry_station).to eq station
       end
     end
+
 
     describe "#touch_out" do
       before(:each){oystercard.touch_in(station)}
@@ -55,6 +61,28 @@ describe Oystercard do
       # end
     end
   end
+
+
+
+
+
+
+  describe "#touch_in" do
+    before(:each) do
+      oystercard.top_up(Oystercard::MINIMUM_BALANCE)
+      oystercard.touch_in('Aldgate')
+    end
+    it "creates a journey object" do
+      journey = double("journey")
+      allow(oystercard).to receive(:current_journey) { journey }
+      expect(oystercard.current_journey).not_to eq nil
+    end
+  end
+
+
+
+
+
 
   context "when oystercard does not have minimum balance" do
     describe "#touch_in" do

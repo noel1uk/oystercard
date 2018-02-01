@@ -1,16 +1,21 @@
 require_relative "station"
+require_relative "journey"
 
 class Oystercard
 
   DEFAULT_BALANCE = 0
   MINIMUM_BALANCE = 1
   DEFAULT_LIMIT = 90
-  attr_reader :balance, :entry_station, :exit_station, :history
+  attr_reader :balance,
+              :entry_station,
+              :exit_station,
+              :history,
+              :current_journey
 
   def initialize(balance = DEFAULT_BALANCE)
     @balance = balance
     @history = []
-    #@current_journey = nil
+    @current_journey = nil
     reset_station
   end
 
@@ -26,7 +31,7 @@ class Oystercard
   def touch_in(station)
     raise "Minimum balance not met" if @balance < MINIMUM_BALANCE
     @entry_station = station
-    #@current_journey = Journey.new#creates a new journey object
+    @current_journey = Journey.new(station)
   end
 
   def touch_out(station)
