@@ -3,25 +3,31 @@ require "journey"
 describe Journey do
 
   subject(:journey) {described_class.new}
-  # let(:oystercard) {double('oystercard')}
 
+  context "when journey is created without recieving arguments" do
+    let(:new_journey) { described_class.new }
+  end
 
+  describe "#initialize" do
+    expect(:journey)
+  end
 
-  it "has empty history" do
-    expect(journey.history).to eq []
+  # it "has empty history" do
+  #   expect(journey.history).to eq []
+  # end
+
+  # Is this whole test actually checking what happens when you run subject.save
+  before do
+    # Why doesn't let work here and where should I put it
+    let(:entry_station) {'ald'}
+    let(:exit_station) {'vic'}
+
+    # is this a correct thing to do? Why does it not work when using @
+    entry_station = 'ald'
+    exit_station = 'vic'
   end
 
 
-
-  #
-  let(:station) {double('station')}
-  let(:stations) { {entry_station: station, exit_station: station }}
-  it "stores current journey hash in array" do
-    journey.save
-    expect(journey.history).to include(stations)
-  end
-  #
-  # @history << {:entry_station => @entry_station, :exit_station => @exit_station}
 
   describe "#in_journey" do
     it "returns whether or not the card is in journey" do
