@@ -13,12 +13,17 @@ describe Oystercard do
 
   context "when new oystercard is initialized without argument" do
     it "has default balance" do
-    expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
+      expect(oystercard.balance).to eq Oystercard::DEFAULT_BALANCE
     end
 
     # it "has empty journey history" do
     #   expect(oystercard.journey_history).to eq []
     # end
+  end
+  context "When a journey is sent into the history" do
+    it "save journey into history" do
+      expect(oystercard.history).to eq []
+    end
   end
 
   context "when oystercard meets minimum balance" do
