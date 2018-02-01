@@ -38,7 +38,7 @@ class Oystercard
     raise "Not yet in journey" unless in_journey?
     deduct(MINIMUM_BALANCE)
     @exit_station = station
-    # save_journey # send the current journey from joirney object to @history in oyster card
+    # @history << @current_journey.save_journey ----- NEXT TASK
     reset_station
   end
 
@@ -58,7 +58,7 @@ class Oystercard
     @balance -= fare
   end
 
-  # def save_journey
-  #   @journey_history << {:entry_station => @entry_station, :exit_station => @exit_station}
-  # end
+  def save_journey
+    @journey_history << {:entry_station => @entry_station, :exit_station => @exit_station}
+  end
 end

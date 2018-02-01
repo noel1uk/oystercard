@@ -6,27 +6,24 @@ describe Journey do
   let(:entry_station){double("entry station")}
   let(:exit_station){double("exit_station")}
 
-  context "when journey is created without recieving arguments" do
-  #  let(:new_journey) { described_class.new(entry_station,exit_station) }
     describe "#initialize" do
       it "returns entry station " do
         expect(journey.entry_station).to eq entry_station
       end
-      # it "returns exit station" do
-      #   expect(journey.exit_station).to eq exit_station
-      # end
     end
-  end
-  context "when the journey is complete" do
-    describe "#send_journey" do
-      it "responds to send journey" do
-        expect(journey.save).to eq ({:entry_station => entry_station, :exit_station => exit_station})
+
+    describe "#end_journey" do
+      it "returns exit station" do
+        expect(journey.end_journey(exit_station)).to eq exit_station
       end
     end
-  end
 
-
-
+    describe "#send_journey" do
+      it "responds to send journey" do
+        journey.end_journey(exit_station)
+        expect(journey.save_journey).to eq ({:entry_station => entry_station, :exit_station => exit_station})
+      end
+    end
 
 
   # it "has empty history" do

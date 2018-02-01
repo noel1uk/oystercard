@@ -63,10 +63,6 @@ describe Oystercard do
   end
 
 
-
-
-
-
   describe "#touch_in" do
     before(:each) do
       oystercard.top_up(Oystercard::MINIMUM_BALANCE)
@@ -78,11 +74,6 @@ describe Oystercard do
       expect(oystercard.current_journey).not_to eq nil
     end
   end
-
-
-
-
-
 
   context "when oystercard does not have minimum balance" do
     describe "#touch_in" do
